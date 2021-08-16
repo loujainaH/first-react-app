@@ -83,8 +83,8 @@ const useStyles = makeStyles((theme) => ({
 
     margin: theme.spacing(1),
     height: "71px",
-
-    position: 'absolute',
+    flex: 1,
+    // position: 'absolute',
     direction: "flex",
   },
   text: {

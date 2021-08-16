@@ -21,50 +21,49 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Search from "@material-ui/icons/Search";
 const useStyles = makeStyles((theme) => ({
   search: {
-   marginTop:"-1.5%",
 
   },
 
- 
+
 
 
 }));
 
 
- 
+
 function HomePage() {
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200&family=Inter:wght@100;200;300&family=Montserrat:wght@100;200;300&display=swap" rel="stylesheet"></link>
-  
+
   const classes = useStyles();
-  
-  
+
+
   return (
-    <div className='App '> 
+    <div className='App '>
 
- 
-<Header/>
 
-<Sidebar />
-<div className="content">
-<Home />
-<SearchButton/>
-<div className={classes.search}>
-<SearchTest  placeholder="From" data={BookData} />
+      <Header />
 
-<Where placeholder="Where?" data={BookData}/>
+      <Sidebar />
+      <div className="content">
+        <Home />
+        {/* <SearchButton /> */}
+        <div className={classes.search}>
+          {/* <SearchTest  placeholder="From" data={BookData} />
 
-{/* <DatePicker/> */}
-</div>
-{/* <Filters/> */}
-{/* <Counter/> */}
-{/* <Users/> */}
+<Where placeholder="Where?" data={BookData}/> */}
+
+          {/* <DatePicker/> */}
+        </div>
+        {/* <Filters/> */}
+        {/* <Counter/> */}
+        {/* <Users/> */}
+      </div>
+      {/* <Search/> */}
+      {/* <DatePicker/> */}
+
+
     </div>
-    {/* <Search/> */}
-    {/* <DatePicker/> */}
-    
 
-</div>
-  
   );
 }
 

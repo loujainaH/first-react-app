@@ -33,16 +33,16 @@ import FlightIcon from '@material-ui/icons/Flight';
 
 //   return (
 //     <div className="search">
-      
+
 //       <div className="searchInputs">
-     
+
 //         <input
 //           type="text"
-          
+
 //           placeholder={placeholder}
 //           value={wordEntered}
 //           onChange={handleFilter}
-          
+
 //         />
 //         {/* <div className="searchIcon">
 //           {filteredData.length === 0 ? (
@@ -59,13 +59,13 @@ import FlightIcon from '@material-ui/icons/Flight';
 //               <a className="dataItem" onClick={(e) => clicked(value.title, e)} target="_blank">
 //                 <p>{value.title} </p>
 //               </a>
-              
+
 //             );
 //           })}
 //         </div>
 //       )}
-      
-     
+
+
 //     </div>
 import { spacing } from '@material-ui/system';
 import { makeStyles } from '@material-ui/core/styles';
@@ -74,22 +74,22 @@ import data from "../Data.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    
+
     margin: theme.spacing(1),
     height: "71px",
-    
-      // padding: '0px 330px',
-     
-      position:'absolute',
-      direction:"flex",
+
+    // padding: '0px 330px',
+
+    // position:'absolute',
+    direction: "flex",
   },
-  text:{
-      display:"flex",
-      flexDirection: "row",
-      color:"black",
+  text: {
+    display: "flex",
+    flexDirection: "row",
+    color: "black",
 
   },
-  
+
   // results:{
   //     position:'absolute',
   //     display:"flex",
@@ -99,19 +99,19 @@ const useStyles = makeStyles((theme) => ({
 
   // },
   // dataResultFrom:{
-      // position:'relative',
-      // display:"flex",
-      // flexDirection:"column",
-      // top:'1000 px',
-      // left:'200',
-      // width:"10px",
-      // margintop: "5px",
-      // width: "300px",
-      // height: "200px",
-      // backgroundcolor: "white",
-      // color:"white",
-      // boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-      // overflow: "hidden",
+  // position:'relative',
+  // display:"flex",
+  // flexDirection:"column",
+  // top:'1000 px',
+  // left:'200',
+  // width:"10px",
+  // margintop: "5px",
+  // width: "300px",
+  // height: "200px",
+  // backgroundcolor: "white",
+  // color:"white",
+  // boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
+  // overflow: "hidden",
 
   //   position: "relative",
   //   margintop: "5px",
@@ -124,20 +124,20 @@ const useStyles = makeStyles((theme) => ({
   //   /* border-color: lightblue; */
   //   borderradius : "8px",
   // },
-    
-// display:"flex",
-// flexDirection:"column",
-//     position: "absolute",
-//     marginTop: "5px",
-//     width: "300px",
-//     height: "200px",
-//     backgroundcolor: "white",
-//     boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-//     overflow: "hidden",
-//     overflowy: "auto",
-//     borderradius: "8px",
 
-// },
+  // display:"flex",
+  // flexDirection:"column",
+  //     position: "absolute",
+  //     marginTop: "5px",
+  //     width: "300px",
+  //     height: "200px",
+  //     backgroundcolor: "white",
+  //     boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
+  //     overflow: "hidden",
+  //     overflowy: "auto",
+  //     borderradius: "8px",
+
+  // },
 
   // searchInput:{
   //   // top: "0px",
@@ -147,26 +147,26 @@ const useStyles = makeStyles((theme) => ({
   //   marginLeft: "25px",
   //   // left: "14px",
   // },
-  a:{
+  a: {
     '&:hover': {
       color: "grey",
-   },
-   textdecoration: "none!important" ,
-   color:"black"
     },
+    textdecoration: "none!important",
+    color: "black"
+  },
 
-    testssss:{
-      height:"100px",
-      width:"100px",
-      backgroundcolor:"green"
-    }
+  testssss: {
+    height: "100px",
+    width: "100px",
+    backgroundcolor: "green"
+  }
 
 
 }
 ));
 
 
-export default function BasicTextFields({placeholder}) {
+export default function BasicTextFields({ placeholder }) {
   const styles = useStyles({
 
   });
@@ -185,86 +185,86 @@ export default function BasicTextFields({placeholder}) {
     } else {
       setFilteredData(newFilter);
     }
-    console.log({filteredData})
+    console.log({ filteredData })
   };
 
-  const final=null ;
-  const clicked = (value,e) =>{
+  const final = null;
+  const clicked = (value, e) => {
     setWordEntered(value);
-    console.log({wordEntered});
-    console.log({value});
+    console.log({ wordEntered });
+    console.log({ value });
     // final={value};
     setFilteredData([]);
-      };
+  };
 
 
-    // const  handleSearchSelection = ({ value }) => {
-    //     this.setState({
-    //       searchSelection: value,
-    //       placeholder: value
-    //     })};
+  // const  handleSearchSelection = ({ value }) => {
+  //     this.setState({
+  //       searchSelection: value,
+  //       placeholder: value
+  //     })};
 
 
-      //  const handleInputChange=(e)=> {
-      //     const target = e.target;
-      //     const value = target.value;
-      //     const name = target.name;
-      
-      //     setState({
-      //       [name]: value
-      //     });
-      //   }
+  //  const handleInputChange=(e)=> {
+  //     const target = e.target;
+  //     const value = target.value;
+  //     const name = target.name;
+
+  //     setState({
+  //       [name]: value
+  //     });
+  //   }
 
 
   function SearchBar({ placeholder, data }) {
-   
 
-  const handleFilter = (event) => {
-    const searchWord = event.target.value;
-    setWordEntered(searchWord);
-    const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
-    });
 
-    if (searchWord === "") {
+    const handleFilter = (event) => {
+      const searchWord = event.target.value;
+      setWordEntered(searchWord);
+      const newFilter = data.filter((value) => {
+        return value.title.toLowerCase().includes(searchWord.toLowerCase());
+      });
+
+      if (searchWord === "") {
+        setFilteredData([]);
+      } else {
+        setFilteredData(newFilter);
+      }
+    };
+
+    const clearInput = () => {
       setFilteredData([]);
-    } else {
-      setFilteredData(newFilter);
-    }
-  };
+      setWordEntered("");
+    };
 
-  const clearInput = () => {
-    setFilteredData([]);
-    setWordEntered("");
-  };
- 
   }
-//   SearchBar({placeholder,data})
+  //   SearchBar({placeholder,data})
   return (
-    <form className={styles.root}  noValidate autoComplete="off">
-     <div className={styles.text}>
-      
-      <div className="results">
-        <div className="searchInputFrom">
-      <TextField id="filled-basic" value={wordEntered} onChange={(event)=>{handleFilter(event)}} type="search" label={placeholder}  variant="filled" />
-      </div>
-      {filteredData.length != 0 && (
-      <div className="dataResultFrom" >
-        
-          {filteredData.slice(0, 15).map((value, key) => {
-            return (
-              <a className="aFrom" onClick={(e) =>clicked(value.title,e)} target="_blank">
-                <p>{value.title} </p>
-              </a>
-              
-            );
-          })}
+    <form className={styles.root} noValidate autoComplete="off">
+      <div className={styles.text}>
+
+        <div className="results">
+          <div className="searchInputFrom">
+            <TextField id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled" />
+          </div>
+          {filteredData.length != 0 && (
+            <div className="dataResultFrom" >
+
+              {filteredData.slice(0, 15).map((value, key) => {
+                return (
+                  <a className="aFrom" onClick={(e) => clicked(value.title, e)} target="_blank">
+                    <p>{value.title} </p>
+                  </a>
+
+                );
+              })}
+            </div>
+          )}
         </div>
-      )}
-      </div>
-      
-      
-      {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
+
+
+        {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
       </div>
 
     </form>
