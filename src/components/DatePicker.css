@@ -1,0 +1,18 @@
+.date{
+    margin-top: 2.3%; 
+    margin-left: 35%;
+     position: absolute;
+     width: 30%;
+     display: flex;
+     height: 10%;
+     direction:flex;
+     flex-direction: row,
+}
+
+.rangeDate{
+    direction: flex;
+    flex-direction: row;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 2.3%;
+}

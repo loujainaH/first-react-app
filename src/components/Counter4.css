@@ -1,0 +1,17 @@
+/* .counter2{
+    margin-top: 907px;
+    direction: flex;
+    flex: 1 1 auto;
+    flex-basis: content;
+    flex-direction: row;
+    width:50%;
+    height: 1%;
+
+} */
+.counter4{
+    margin-top: 0px;
+    color: #818181;
+}
+.counter4 .small{
+    color: white;
+}
