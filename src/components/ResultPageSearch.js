@@ -20,7 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
@@ -44,24 +44,27 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    marginTop: '-3%',
-    '& > *': {
-      margin: theme.spacing(-2),
-    },
+    marginTop: '-2%',
+    width: "1010px",
+    justifyContent: "space-between",
+    // marginLeft: "190px",
+    // '& > *': {
+    //   margin: theme.spacing(0),
+    // },
 
-    
+
   },
-  line:{
+  line: {
     // width:"5%",
     display: 'flex',
-     length:"1",
-     width:"72%",
-     marginLeft:"15%",
+    length: "1",
+    width: "72%",
+    marginLeft: "15%",
 
-     //maxWidth:"30",
-     
-     
- },
+    //maxWidth:"30",
+
+
+  },
 }));
 
 export default function OutlinedChips() {
@@ -75,66 +78,66 @@ export default function OutlinedChips() {
     console.info('You clicked the Chip.');
   };
   const [value, setValue] = React.useState("");
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
-  
-    const handleToggle = () => {
-      setOpen((prevOpen) => !prevOpen);
-    };
-  
-    const handleClose = (event) => {
-      if (anchorRef.current && anchorRef.current.contains(event.target)) {
-        return;
-      }
-  
-      setOpen(false);
-    };
-  
-    function handleListKeyDown(event) {
-      if (event.key === "Tab") {
-        event.preventDefault();
-        setOpen(false);
-      }
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
     }
-    const handleRadioChange = (event) => {
-      setValue(event.target.value);
-    };
-  
-    // return focus to the button when we transitioned from !open -> open
-    const prevOpen = React.useRef(open);
-    React.useEffect(() => {
-      if (prevOpen.current === true && open === false) {
-        anchorRef.current.focus();
-      }
-  
-      prevOpen.current = open;
-    }, [open]);
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+  const handleRadioChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   return (
-    
-<div className="Rfilters">
-{/* <div className={classes.allFilters}>
+
+    <div className="Rfilters">
+      {/* <div className={classes.allFilters}>
 All Filters
 </div> */}
 
-    <div className={classes.root}> 
-      <AllFilters count={BagsCount} setCount={setBagsCount}/>
-    <StopFilter/>
-<AirlineFilter/>
-<BagsFilter count={BagsCount} setCount={setBagsCount}/>
-<PriceFilter/>
-<TimesFilter/>
-<ConnectingAirports/>
-<DurationFilter/>
+      <div className={classes.root}>
+        <AllFilters count={BagsCount} setCount={setBagsCount} />
+        <StopFilter />
+        <AirlineFilter />
+        <BagsFilter count={BagsCount} setCount={setBagsCount} />
+        <PriceFilter />
+        <TimesFilter />
+        <ConnectingAirports />
+        <DurationFilter />
 
- 
-      
-    </div>
-    
-    {/* <hr className={classes.line}></hr> */}
-    
 
-    
+
+      </div>
+
+      {/* <hr className={classes.line}></hr> */}
+
+
+
     </div>
 
   );

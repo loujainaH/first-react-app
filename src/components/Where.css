@@ -1,7 +1,11 @@
  .searchInputTo {
     /* margin-top: 35px; */
-    top: 35px;
-    left: 250px;
+    /* top: 35px;
+    left: 250px; */
+    display: flex;
+    position: relative;
+  
+
     /* position: absolute; */
     /* margin-left: 250px; */
   
@@ -43,8 +47,7 @@
    */
   .dataResultTo {
     position: relative;
-    margin-top: 97px;
-    margin-left: 240px;
+  
     width: 200px;
     height: 200px;
     background-color: white;
@@ -53,7 +56,7 @@
     overflow-y: auto;
     /* border-color: lightblue; */
     border-radius: 8px;
-
+z-index: 20;
     
   }
   

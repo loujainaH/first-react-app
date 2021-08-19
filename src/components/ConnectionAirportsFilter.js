@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
@@ -28,58 +28,59 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(3),}
+    // '& > *': {
+    //   margin: theme.spacing(3),}
     // display: "flex"
   },
-  title:{
-    textAlign:"left",
-    marginLeft:"2%"
+  title: {
+    textAlign: "left",
+    marginLeft: "2%"
   },
   paper: {
     marginRight: theme.spacing(2),
-    width:"110%",
-   
-    
+    width: "110%",
+
+
     height: "200px",
     overflow: "hidden",
     // overflowy: "auto",
     overflow: 'auto'
     // height: "200px",
-    
+
   },
-  button:{
-    alignItems:"flex-end"
+  button: {
+    alignItems: "flex-end"
   },
   down: {
     display: "flex",
     flexDirection: "column",
-    marginLeft:"2%",
+    marginLeft: "2%",
   },
-  b:{
-    alignItems:"Start"
+  b: {
+    alignItems: "Start"
   },
   formControl: {
     margin: theme.spacing(3),
-    textAlign:"left"
+    textAlign: "left"
   },
 
-  price:{
-    textAlign:"left",
-    marginLeft:"0%"
+  price: {
+    textAlign: "left",
+    marginLeft: "0%"
   },
-  h7:{
-    textAlign:"left",
-    marginLeft:"2%",
-    marginTop:"2%"
+  h7: {
+    textAlign: "left",
+    marginLeft: "2%",
+    marginTop: "2%"
   },
 }));
 function valuetext(value) {
-    return `${value}°C`;
-  }
-export default function MenuListComposition({count,setCount}) {
+  return `${value}°C`;
+}
+export default function MenuListComposition({ count, setCount }) {
   const classes = useStyles();
-
+  const [vari, setvariant] = React.useState('outlined');
+  const [color, setcolor] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [state, setState] = React.useState({
@@ -96,14 +97,16 @@ export default function MenuListComposition({count,setCount}) {
   // const handleChange = (event) => {
   //   setValue(event.target.value);
   // };
- 
+
   const [value, setValue] = React.useState([0, 100]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setvariant('default')
+    setcolor("primary")
   };
   const { gilad, jason, antoine } = state;
-  
-  
+
+
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -128,6 +131,8 @@ export default function MenuListComposition({count,setCount}) {
 
   const handleChange2 = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+    setvariant('default')
+    setcolor("primary")
   };
 
 
@@ -143,6 +148,8 @@ export default function MenuListComposition({count,setCount}) {
 
   const handleChange3 = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+    setvariant('default')
+    setcolor("primary")
   };
 
   return (
@@ -159,7 +166,8 @@ export default function MenuListComposition({count,setCount}) {
             component="a"
             href="#chip"
             clickable
-            variant="outlined"
+            variant={vari}
+            color={color}
           />
         </Button>
         <Popper
@@ -188,69 +196,69 @@ export default function MenuListComposition({count,setCount}) {
                       <b >Connecting airports</b>
                     </div>
                     <div className={classes.h7}>
-                    <h7>Layover duration</h7></div>
+                      <h7>Layover duration</h7></div>
                     <div className={classes.down}>
-                    <FormControl component="fieldset" className={classes.formControl}>
-                   
-        <FormGroup>
-        <div className={classes.price}>
-    
-    </div>
-    <Slider
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-      />
+                      <FormControl component="fieldset" className={classes.formControl}>
+
+                        <FormGroup>
+                          <div className={classes.price}>
+
+                          </div>
+                          <Slider
+                            value={value}
+                            onChange={handleChange}
+                            valueLabelDisplay="auto"
+                            aria-labelledby="range-slider"
+                            getAriaValueText={valuetext}
+                          />
 
 
-         <Grid component="label" container alignItems="center" spacing={1}>
-          <Grid item>All connecting airports</Grid>
-          <Grid item>
-          <FormControlLabel
-        control={
-          <Switch
-          className={classes.button}
-            checked={state.checkedB}
-            onChange={handleChange2}
-            name="checkedB"
-            color="primary"
-           
-          />
-        }
-        />
-          </Grid>
-   
-        </Grid>
+                          <Grid component="label" container alignItems="center" spacing={1}>
+                            <Grid item>All connecting airports</Grid>
+                            <Grid item>
+                              <FormControlLabel
+                                control={
+                                  <Switch
+                                    className={classes.button}
+                                    checked={state.checkedB}
+                                    onChange={handleChange2}
+                                    name="checkedB"
+                                    color="primary"
 
-        <FormControlLabel
-            control={<Checkbox checked={state.A} onChange={handleChange3} name="A" color="primary"/>}
-            label="Austrian"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.B} onChange={handleChange3} name="B" color="primary"/>}
-            label="EgyptAir"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.C} onChange={handleChange3} name="C" color="primary" />}
-            label="Etihad"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.D} onChange={handleChange3} name="D" color="primary" />}
-            label="Lufthansa"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.E} onChange={handleChange3} name="E" color="primary"/>}
-            label="Qatar Airways"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.F} onChange={handleChange3} name="F" color="primary"/>}
-            label="Royal Jordanian"
-          />
-      
-        </FormGroup>
-        </FormControl> 
+                                  />
+                                }
+                              />
+                            </Grid>
+
+                          </Grid>
+
+                          <FormControlLabel
+                            control={<Checkbox checked={state.A} onChange={handleChange3} name="A" color="primary" />}
+                            label="Austrian"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.B} onChange={handleChange3} name="B" color="primary" />}
+                            label="EgyptAir"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.C} onChange={handleChange3} name="C" color="primary" />}
+                            label="Etihad"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.D} onChange={handleChange3} name="D" color="primary" />}
+                            label="Lufthansa"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.E} onChange={handleChange3} name="E" color="primary" />}
+                            label="Qatar Airways"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.F} onChange={handleChange3} name="F" color="primary" />}
+                            label="Royal Jordanian"
+                          />
+
+                        </FormGroup>
+                      </FormControl>
                     </div>
                   </MenuList>
                 </ClickAwayListener>
@@ -262,7 +270,7 @@ export default function MenuListComposition({count,setCount}) {
 
 
 
-      
+
     </div>
   );
 }

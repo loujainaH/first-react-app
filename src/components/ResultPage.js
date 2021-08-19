@@ -13,40 +13,82 @@ import Result from "../components/Result";
 import BestFlights from "../components/BestFlights"
 import OtherFlights from "../components/OtherFlights"
 import Footer from "../components/Footer"
-function ResultPage(){
-    return(
-<div>
-    <div className="header">
-     <Header/>
-    </div>
-    <Sidebar/>
-    <div className="content">
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import SummaryCard from "../components/SummaryCard"
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: "flex",
+        flexDirection: "column",
+        position: "absolute",
+    },
 
-<div className="placeSearch">
-{/* <SearchTest  placeholder="From" data={BookData} />
 
-<Where placeholder="Where?" data={BookData}/> */}
+    filters: {
+        width: "1010px",
+        marginLeft: "16%",
 
-{/* <DatePicker/> */}
+    },
+    Departing: {
+        alignSelf: "",
+    },
+    title: {
+        fontSize: theme.typography.pxToRem(26),
+        horizontalAlign: "left",
+        marginLeft: "-43%",
+        color: '#202124',
+        marginTop: "5%"
+    },
 
-</div>
+    content: {
+        flex: 1,
+        display: "flex",
+        /* align-items: center; */
+        justifyContent: "center",
+        position: "fixed",
+        left: "80%",
+        top: "40%",
+        // width: "50%",
+    }
 
-<Result/>
-{/* <Counter/> */}
-{/* <Users/> */}
-    </div>
-   
+}));
+function ResultPage() {
 
-   <ResultPageSearch/>
-   
-   <CovidWarning/>
-<BestFlights/>
-<OtherFlights/>
-<Footer/>
+    const classes = useStyles();
 
-    </div>
+    return (
+        <div className={classes.root}>
+            <div className="header">
+                <Header />
+            </div>
+            <Sidebar />
+            <div className={classes.filters}>
+
+
+                <Result />
+
+                <ResultPageSearch />
+
+            </div>
+
+
+
+            <CovidWarning />
+            <div className={classes.column}>
+
+                <Typography className={classes.title}>Choose Your Departing Flight:</Typography>
+            </div>
+
+            <BestFlights />
+            <OtherFlights />
+            <div className={classes.content}>
+                <SummaryCard />
+            </div>
+            <Footer />
+
+        </div>
     )
-    
+
 }
- 
+
 export default ResultPage;

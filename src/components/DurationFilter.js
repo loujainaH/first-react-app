@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
@@ -27,43 +27,43 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(3),}
+    // '& > *': {
+    //   margin: theme.spacing(3),}
     // display: "flex"
   },
-  title:{
-    textAlign:"left",
-    marginLeft:"9%"
+  title: {
+    textAlign: "left",
+    marginLeft: "9%"
   },
   paper: {
     marginRight: theme.spacing(2),
-    width:"200%",
-    
+    width: "200%",
+
     // height: "200px",
-    
+
   },
   down: {
     display: "flex",
     flexDirection: "column",
-    marginLeft:"2%",
+    marginLeft: "2%",
   },
-  b:{
-    alignItems:"Start"
+  b: {
+    alignItems: "Start"
   },
   formControl: {
     margin: theme.spacing(3),
-    textAlign:"left"
+    textAlign: "left"
   },
 
-  price:{
-    textAlign:"left",
-    marginLeft:"0%"
+  price: {
+    textAlign: "left",
+    marginLeft: "0%"
   },
 }));
 function valuetext(value) {
-    return `${value}°C`;
-  }
-export default function MenuListComposition({count,setCount}) {
+  return `${value}°C`;
+}
+export default function MenuListComposition({ count, setCount }) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -83,13 +83,22 @@ export default function MenuListComposition({count,setCount}) {
   //   setValue(event.target.value);
   // };
   const [value, setValue] = React.useState(1);
-
+  const [vari, setvariant] = React.useState('outlined');
+  const [color, setcolor] = React.useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    if (value === 1) {
+      setcolor("")
+      setvariant('outlined')
+    }
+    else {
+      setvariant('default')
+      setcolor("primary")
+    }
   };
   const { gilad, jason, antoine } = state;
-  
-  
+
+
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -139,7 +148,8 @@ export default function MenuListComposition({count,setCount}) {
             component="a"
             href="#chip"
             clickable
-            variant="outlined"
+            variant={vari}
+            color={color}
           />
         </Button>
         <Popper
@@ -168,26 +178,26 @@ export default function MenuListComposition({count,setCount}) {
                       <b >Duration</b>
                     </div>
                     <div className={classes.down}>
-                    <FormControl component="fieldset" className={classes.formControl}>
-                   
-        <FormGroup>
-        <div className={classes.price}>
-    <small className={classes.price}>Flight Duration</small> 
-    </div>
-    <Slider
-        value={value}
-        min={1}
-        step={1}
-        max={36}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
+                      <FormControl component="fieldset" className={classes.formControl}>
 
-        aria-labelledby="custom thumb label"
-        getAriaValueText={valuetext}
-      />
-      
-        </FormGroup>
-        </FormControl> 
+                        <FormGroup>
+                          <div className={classes.price}>
+                            <small className={classes.price}>Flight Duration</small>
+                          </div>
+                          <Slider
+                            value={value}
+                            min={1}
+                            step={1}
+                            max={36}
+                            onChange={handleChange}
+                            valueLabelDisplay="auto"
+
+                            aria-labelledby="custom thumb label"
+                            getAriaValueText={valuetext}
+                          />
+
+                        </FormGroup>
+                      </FormControl>
                     </div>
                   </MenuList>
                 </ClickAwayListener>
@@ -199,7 +209,7 @@ export default function MenuListComposition({count,setCount}) {
 
 
 
-      
+
     </div>
   );
 }

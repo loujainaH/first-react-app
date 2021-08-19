@@ -1,8 +1,8 @@
 .searchInputFrom {
-    
+  
     display: flex;
      position: relative;
-    margin-left: 14px;
+    margin-left: 10px;
   }
   
   /*.search input {
@@ -51,6 +51,8 @@
     overflow-y: auto;
     /* border-color: lightblue; */
     border-radius: 8px;
+    z-index: 20;
+
     
   }
   

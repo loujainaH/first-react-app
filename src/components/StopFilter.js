@@ -15,7 +15,7 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
@@ -32,45 +32,45 @@ import TimesFilter from "../components/TimesFilters"
 import DurationFilter from "../components/DurationFilter"
 import ConnectingAirports from "../components/ConnectionAirportsFilter"
 const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      '& > *': {
-        margin: theme.spacing(3),}
-      // display: "flex"
-    },
-    title:{
-      textAlign:"left",
-      marginLeft:"2%"
-    },
-    paper: {
-      marginRight: theme.spacing(2),
-       width:"100%",
-      
-      // height: "200px",
-     
-    },
-    down: {
-      display: "flex",
-      flexDirection: "column",
-      marginLeft:"2%",
-    },
-    b:{
-      alignItems:"Start"
-    },
-    formControl: {
-      margin: theme.spacing(3),
-      textAlign:"left"
-    },
-  
-    bags:{
-      textAlign:"left",
-      marginLeft:"-10%"
-    },
-  
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    // '& > *': {
+    //   margin: theme.spacing(3),}
+    // display: "flex"
+  },
+  title: {
+    textAlign: "left",
+    marginLeft: "2%"
+  },
+  paper: {
+    marginRight: theme.spacing(2),
+    width: "100%",
 
-  
+    // height: "200px",
+
+  },
+  down: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "2%",
+  },
+  b: {
+    alignItems: "Start"
+  },
+  formControl: {
+    margin: theme.spacing(3),
+    textAlign: "left"
+  },
+
+  bags: {
+    textAlign: "left",
+    marginLeft: "-10%"
+  },
+
+
+
 }));
 
 export default function OutlinedChips() {
@@ -84,47 +84,56 @@ export default function OutlinedChips() {
     console.info('You clicked the Chip.');
   };
   const [value, setValue] = React.useState("");
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
-  
-    const handleToggle = () => {
-      setOpen((prevOpen) => !prevOpen);
-    };
-  
-    const handleClose = (event) => {
-      if (anchorRef.current && anchorRef.current.contains(event.target)) {
-        return;
-      }
-  
-      setOpen(false);
-    };
-  
-    function handleListKeyDown(event) {
-      if (event.key === "Tab") {
-        event.preventDefault();
-        setOpen(false);
-      }
+  const [open, setOpen] = React.useState(false);
+  const [vari, setvariant] = React.useState('outlined');
+  const [color, setcolor] = React.useState("");
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
     }
-    const handleRadioChange = (event) => {
-      setValue(event.target.value);
-    };
-  
-    // return focus to the button when we transitioned from !open -> open
-    const prevOpen = React.useRef(open);
-    React.useEffect(() => {
-      if (prevOpen.current === true && open === false) {
-        anchorRef.current.focus();
-      }
-  
-      prevOpen.current = open;
-    }, [open]);
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+  const handleRadioChange = (event) => {
+    setValue(event.target.value);
+  };
+  const changeFunc = () => {
+    setvariant('default')
+    setcolor("primary")
+
+
+  }
+
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   return (
-    
-<div className={classes.root}>
 
-<div>
-    
+    <div className={classes.root}>
+
+      <div>
+
         <Button
           ref={anchorRef}
           aria-controls={open ? "menu-list-grow" : undefined}
@@ -136,7 +145,8 @@ export default function OutlinedChips() {
             component="a"
             href="#chip"
             clickable
-            variant="outlined"
+            variant={vari}
+            color={color}
             // deleteIcon={<DoneIcon />}
             deleteIcon={<ExpandMoreIcon />}
           />
@@ -162,12 +172,13 @@ export default function OutlinedChips() {
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
+                    onChange={changeFunc}
                   >
-                   <div className={classes.title}>
+                    <div className={classes.title}>
                       <b >Stops</b>
                     </div>
                     <div className={classes.down}>
-                     
+
                       <RadioGroup
                         aria-label="quiz"
                         name="quiz"
@@ -183,12 +194,12 @@ export default function OutlinedChips() {
                         />
                         <FormControlLabel
                           value="worst"
-                          control={<Radio color="primary"/>}
+                          control={<Radio color="primary" />}
                           label="Non-stop only"
                         />
                         <FormControlLabel
                           value="w"
-                          control={<Radio color="primary"/>}
+                          control={<Radio color="primary" />}
                           label="1 stop or fewer"
                         />
                         <FormControlLabel
@@ -205,8 +216,8 @@ export default function OutlinedChips() {
           )}
         </Popper>
       </div>
-      
- 
+
+
 
 
     </div>

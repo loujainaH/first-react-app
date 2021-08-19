@@ -249,10 +249,10 @@ function Home({ tripType, setTripType }) {
                     {classValue}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item as='button'><div className="buss" onClick={(e) => changeValueClass(e.target.textContent)}>Business</div>
+                    <Dropdown.Item as='button'><div className="buss" onClick={(e) => changeValueClass(e.target.textContent)}>Economy</div>
 
                     </Dropdown.Item>
-                    <Dropdown.Item as='button'><div className="eco" onClick={(e) => changeValueClass(e.target.textContent)}>Economy</div>
+                    <Dropdown.Item as='button'><div className="eco" onClick={(e) => changeValueClass(e.target.textContent)}>Business</div>
                     </Dropdown.Item>
                     <Dropdown.Item as='button'><div className="fclass" onClick={(e) => changeValueClass(e.target.textContent)}>First Class</div>
                     </Dropdown.Item>
@@ -267,7 +267,7 @@ function Home({ tripType, setTripType }) {
               <div className={classes.input1}>
                 <SearchTest placeholder="From" data={BookData} />
 
-                <Where placeholder="Where?" data={BookData} />
+                <Where placeholder="To" data={BookData} />
               </div>
 
               <div className={classes.calender}>

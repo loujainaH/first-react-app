@@ -2,20 +2,22 @@ import React from 'react';
 import Header from './Header';
 import '../components/ResultPage.css'
 import Sidebar from './Sidebar';
-import SearchTest from "../components/Searchbar"
-import Where from "../components/Where"
-import Filters from "../components/Filters";
+import SearchTest from "./Searchbar"
+import Where from "./Where"
+import Filters from "./Filters";
 import BookData from "../Data.json";
 import ResultPageSearch from './ResultPageSearch';
 import CovidWarning from './CovidWarning'
-import Home from "../components/Home";
-import Result from "../components/Result";
-import BestFlights from "../components/BestFlightsReturn"
-import OtherFlights from "../components/OtherFlightsReturn"
-import Footer from "../components/Footer"
+import Home from "./Home";
+import Result from "./Result";
+import BestFlights from "./BestFlights"
+import OtherFlights from "./OtherFlights"
+import Footer from "./Footer"
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import SummaryCard from "../components/SummaryCard"
+import SummaryCard from "./SummaryCard"
+import Stepper from "./Stepper"
+import PassengerDetails from "./PassengerDetails"
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
@@ -62,25 +64,10 @@ function ResultPage() {
                 <Header />
             </div>
             <Sidebar />
-            <div className={classes.filters}>
+
+            <Stepper />
 
 
-                <Result />
-
-                <ResultPageSearch />
-
-            </div>
-
-
-
-            <CovidWarning />
-            <div className={classes.column}>
-
-                <Typography className={classes.title}>Choose Your Returning Flight:</Typography>
-            </div>
-
-            <BestFlights />
-            <OtherFlights />
             <div className={classes.content}>
                 <SummaryCard />
             </div>

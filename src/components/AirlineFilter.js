@@ -24,14 +24,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(3),}
+    // '& > *': {
+    //   margin: theme.spacing(3),}
     // display: "flex"
   },
   paper: {
     marginRight: theme.spacing(2),
-    width:"100%",
-    
+    width: "100%",
+
     height: "200px",
     overflow: "hidden",
     // overflowy: "auto",
@@ -40,19 +40,22 @@ const useStyles = makeStyles((theme) => ({
   down: {
     display: "flex",
     flexDirection: "column",
-    marginLeft:"2%",
+    marginLeft: "2%",
   },
-  b:{
-    alignItems:"Start"
+  b: {
+    alignItems: "Start"
   },
-  title:{
-    textAlign:"left",
-    marginLeft:"9%"
+  title: {
+    textAlign: "left",
+    marginLeft: "9%"
   },
   formControl: {
     margin: theme.spacing(3),
-    textAlign:"left"
+    textAlign: "left"
   },
+  Fdiv: {
+    margin: 0,
+  }
 }));
 
 export default function MenuListComposition() {
@@ -69,9 +72,15 @@ export default function MenuListComposition() {
   // const handleChange = (event) => {
   //   setValue(event.target.value);
   // };
-
+  const [vari, setvariant] = React.useState('outlined');
+  const [color, setcolor] = React.useState("");
   const { gilad, jason, antoine } = state;
-  
+  const changeFunc = () => {
+    setvariant('default')
+    setcolor("primary")
+
+
+  }
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -119,10 +128,11 @@ export default function MenuListComposition() {
             component="a"
             href="#chip"
             clickable
-            variant="outlined"
-            // deleteIcon={<DoneIcon />}
-            //deleteIcon={<ExpandMoreIcon />}
-            // label="Stops" component="a" href="#chip" clickable variant="outlined"
+            variant={vari}
+            color={color}
+          // deleteIcon={<DoneIcon />}
+          //deleteIcon={<ExpandMoreIcon />}
+          // label="Stops" component="a" href="#chip" clickable variant="outlined"
           />
         </Button>
         <Popper
@@ -146,40 +156,41 @@ export default function MenuListComposition() {
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
+                    onChange={changeFunc}
                   >
                     <div className={classes.title}>
                       <b >Airlines</b>
                     </div>
                     <div className={classes.down}>
-                    <FormControl component="fieldset" className={classes.formControl}>
-                    <FormLabel component="legend">Airlines</FormLabel>
-        <FormGroup>
-          <FormControlLabel
-            control={<Checkbox checked={state.A} onChange={handleChange} name="A" color="primary"/>}
-            label="Austrian"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.B} onChange={handleChange} name="B" color="primary"/>}
-            label="EgyptAir"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.C} onChange={handleChange} name="C" color="primary" />}
-            label="Etihad"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.D} onChange={handleChange} name="D" color="primary" />}
-            label="Lufthansa"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.E} onChange={handleChange} name="E" color="primary"/>}
-            label="Qatar Airways"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={state.F} onChange={handleChange} name="F" color="primary"/>}
-            label="Royal Jordanian"
-          />
-        </FormGroup>
-        </FormControl> 
+                      <FormControl component="fieldset" className={classes.formControl}>
+                        <FormLabel component="legend">Airlines</FormLabel>
+                        <FormGroup>
+                          <FormControlLabel
+                            control={<Checkbox checked={state.A} onChange={handleChange} name="A" color="primary" />}
+                            label="Austrian"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.B} onChange={handleChange} name="B" color="primary" />}
+                            label="EgyptAir"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.C} onChange={handleChange} name="C" color="primary" />}
+                            label="Etihad"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.D} onChange={handleChange} name="D" color="primary" />}
+                            label="Lufthansa"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.E} onChange={handleChange} name="E" color="primary" />}
+                            label="Qatar Airways"
+                          />
+                          <FormControlLabel
+                            control={<Checkbox checked={state.F} onChange={handleChange} name="F" color="primary" />}
+                            label="Royal Jordanian"
+                          />
+                        </FormGroup>
+                      </FormControl>
                     </div>
                   </MenuList>
                 </ClickAwayListener>
@@ -191,7 +202,7 @@ export default function MenuListComposition() {
 
 
 
-      
+
     </div>
   );
 }

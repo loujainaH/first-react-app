@@ -7,77 +7,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import FlightIcon from '@material-ui/icons/Flight';
 import { blue } from "@material-ui/core/colors";
-// function SearchBar({ placeholder, data }) {
-//   const [filteredData, setFilteredData] = useState([]);
-//   const [wordEntered, setWordEntered] = useState("");
-
-//   const handleFilter = (event) => {
-//     const searchWord = event.target.value;
-//     setWordEntered(searchWord);
-//     const newFilter = data.filter((value) => {
-//       return value.title.toLowerCase().includes(searchWord.toLowerCase());
-//     });
-
-//     if (searchWord === "") {
-//       setFilteredData([]);
-//     } else {
-//       setFilteredData(newFilter);
-//     }
-//   };
-
-//   const clearInput = () => {
-//     setFilteredData([]);
-//     setWordEntered("");
-//   };
-//   const clicked = (e) =>{
-// setWordEntered(e);
-// setFilteredData([]);
-//   };
-
-// return (
-//   <div className="search">
-
-//     <div className="searchInputs">
-
-//       <input
-//         type="text"
-
-//         placeholder={placeholder}
-//         value={wordEntered}
-//         onChange={handleFilter}
-
-//       />
-//       {/* <div className="searchIcon">
-//         {filteredData.length === 0 ? (
-//           <SearchIcon />
-//         ) : (
-//           <CloseIcon id="clearBtn" onClick={clearInput} />
-//         )} */}
-//       {/* </div> */}
-//     </div>
-//     {filteredData.length != 0 && (
-//       <div className="dataResult" >
-//         {filteredData.slice(0, 15).map((value, key) => {
-//           return (
-//             <a className="dataItem" onClick={(e) => clicked(value.title, e)} target="_blank">
-//               <p>{value.title} </p>
-//             </a>
-
-//           );
-//         })}
-//       </div>
-//     )}
-
-
-//   </div>
-{/* <div></div>
-    
-  );
-}
-
-export default SearchBar; */}
-
-
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import FlightLandIcon from '@material-ui/icons/FlightLand';
 const useStyles = makeStyles((theme) => ({
   root: {
 
@@ -249,7 +184,24 @@ export default function BasicTextFields({ placeholder }) {
 
         <div className="resultsTo">
           <div className="searchInputTo">
-            <TextField id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled" />
+
+            <TextField
+
+              id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled"
+              InputProps={{
+                startAdornment: <InputAdornment position="start"> <FlightLandIcon /></InputAdornment>,
+              }} />
+            {/* <FormControl >
+              <InputLabel htmlFor="input-with-icon-adornment">To</InputLabel>
+              <Input
+                value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <FlightTakeoffIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl> */}
           </div>
           {filteredData.length != 0 && (
             <div className="dataResultTo" >

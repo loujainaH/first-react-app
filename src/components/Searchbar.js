@@ -4,69 +4,9 @@ import "../components/Searchbar.css";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import FlightIcon from '@material-ui/icons/Flight';
-// function SearchBar({ placeholder, data }) {
-//   const [filteredData, setFilteredData] = useState([]);
-//   const [wordEntered, setWordEntered] = useState("");
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
-//   const handleFilter = (event) => {
-//     const searchWord = event.target.value;
-//     setWordEntered(searchWord);
-//     const newFilter = data.filter((value) => {
-//       return value.title.toLowerCase().includes(searchWord.toLowerCase());
-//     });
-
-//     if (searchWord === "") {
-//       setFilteredData([]);
-//     } else {
-//       setFilteredData(newFilter);
-//     }
-//   };
-
-//   const clearInput = () => {
-//     setFilteredData([]);
-//     setWordEntered("");
-//   };
-//   const clicked = (e) =>{
-// setWordEntered(e);
-// setFilteredData([]);
-//   };
-
-//   return (
-//     <div className="search">
-
-//       <div className="searchInputs">
-
-//         <input
-//           type="text"
-
-//           placeholder={placeholder}
-//           value={wordEntered}
-//           onChange={handleFilter}
-
-//         />
-//         {/* <div className="searchIcon">
-//           {filteredData.length === 0 ? (
-//             <SearchIcon />
-//           ) : (
-//             <CloseIcon id="clearBtn" onClick={clearInput} />
-//           )} */}
-//         {/* </div> */}
-//       </div>
-//       {filteredData.length != 0 && (
-//         <div className="dataResult" >
-//           {filteredData.slice(0, 15).map((value, key) => {
-//             return (
-//               <a className="dataItem" onClick={(e) => clicked(value.title, e)} target="_blank">
-//                 <p>{value.title} </p>
-//               </a>
-
-//             );
-//           })}
-//         </div>
-//       )}
-
-
-//     </div>
 import { spacing } from '@material-ui/system';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -76,12 +16,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
 
     margin: theme.spacing(1),
+    marginLeft: 0,
     height: "71px",
 
     // padding: '0px 330px',
 
     // position:'absolute',
-    direction: "flex",
+    display: "flex",
   },
   text: {
     display: "flex",
@@ -90,63 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
   },
 
-  // results:{
-  //     position:'absolute',
-  //     display:"flex",
-  //     // flexDirection:"row",
-  //     // top:'1000 px',
-  //     // left:'200'
 
-  // },
-  // dataResultFrom:{
-  // position:'relative',
-  // display:"flex",
-  // flexDirection:"column",
-  // top:'1000 px',
-  // left:'200',
-  // width:"10px",
-  // margintop: "5px",
-  // width: "300px",
-  // height: "200px",
-  // backgroundcolor: "white",
-  // color:"white",
-  // boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-  // overflow: "hidden",
-
-  //   position: "relative",
-  //   margintop: "5px",
-  //   width: "300px",
-  //   height: "200px",
-  //   backgroundcolor: "white",
-  //   boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-  //   overflow: "hidden",
-  //    overflowy: "auto",
-  //   /* border-color: lightblue; */
-  //   borderradius : "8px",
-  // },
-
-  // display:"flex",
-  // flexDirection:"column",
-  //     position: "absolute",
-  //     marginTop: "5px",
-  //     width: "300px",
-  //     height: "200px",
-  //     backgroundcolor: "white",
-  //     boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-  //     overflow: "hidden",
-  //     overflowy: "auto",
-  //     borderradius: "8px",
-
-  // },
-
-  // searchInput:{
-  //   // top: "0px",
-  //   width: "226px",
-  //   position: "absolute", 
-  //   marginTop:"70px",
-  //   marginLeft: "25px",
-  //   // left: "14px",
-  // },
   a: {
     '&:hover': {
       color: "grey",
@@ -246,7 +131,11 @@ export default function BasicTextFields({ placeholder }) {
 
         <div className="results">
           <div className="searchInputFrom">
-            <TextField id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled" />
+            <TextField id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled"
+
+              InputProps={{
+                startAdornment: <InputAdornment position="start"> <FlightTakeoffIcon /></InputAdornment>,
+              }} />
           </div>
           {filteredData.length != 0 && (
             <div className="dataResultFrom" >

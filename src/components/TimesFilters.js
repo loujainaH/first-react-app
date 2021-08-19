@@ -27,7 +27,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 // import PropTypes from 'prop-types';
 import FormGroup from '@material-ui/core/FormGroup';
 
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -73,69 +73,69 @@ function a11yProps(index) {
 }
 
 
-  
-  const useStyles = makeStyles((theme) => ({
-      root: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        '& > *': {
-          margin: theme.spacing(3),}
-        // display: "flex"
-      },
-      title:{
-        textAlign:"left",
-        marginLeft:"9%"
-      },
-      paper: {
-        marginRight: theme.spacing(2),
-        // width:"100%",
-        
-        // height: "200px",
-        overflow: "hidden",
-        // overflowy: "auto",
-        overflow: 'auto'
-      },
-      down: {
-        display: "flex",
-        flexDirection: "column",
-        marginLeft:"2%",
-      },
-      b:{
-        alignItems:"Start"
-      },
-      formControl: {
-        margin: theme.spacing(3),
-        textAlign:"left"
-      },
-    
-      bags:{
-        textAlign:"left",
-        marginLeft:"-10%"
-      },
-      tabs: {
-        backgroundColor: theme.palette.background.paper,
-        width: 500,
-      },
 
-      departure:{
-        
-            color:"#818181",
-       
-      },
-      arrival:{
-        
-        color:"#818181",
-   
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    // '& > *': {
+    //   margin: theme.spacing(3),}
+    // display: "flex"
   },
-  icon1:{
-    transform:"scaleX(-1)"
+  title: {
+    textAlign: "left",
+    marginLeft: "9%"
   },
-    
+  paper: {
+    marginRight: theme.spacing(2),
+    // width:"100%",
+
+    // height: "200px",
+    overflow: "hidden",
+    // overflowy: "auto",
+    overflow: 'auto'
+  },
+  down: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "2%",
+  },
+  b: {
+    alignItems: "Start"
+  },
+  formControl: {
+    margin: theme.spacing(3),
+    textAlign: "left"
+  },
+
+  bags: {
+    textAlign: "left",
+    marginLeft: "-10%"
+  },
+  tabs: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500,
+  },
+
+  departure: {
+
+    color: "#818181",
+
+  },
+  arrival: {
+
+    color: "#818181",
+
+  },
+  icon1: {
+    transform: "scaleX(-1)"
+  },
+
 }));
 function valuetext(value) {
-    return `${value}°C`;
-  }
+  return `${value}°C`;
+}
 export default function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
@@ -144,8 +144,12 @@ export default function FullWidthTabs() {
   const [value3, setValue3] = React.useState([0, 100]);
   const [value4, setValue4] = React.useState([0, 100]);
   const [value5, setValue5] = React.useState([0, 100]);
+  const [vari, setvariant] = React.useState('outlined');
+  const [color, setcolor] = React.useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
+
+
   };
 
   const handleChangeIndex = (index) => {
@@ -166,8 +170,8 @@ export default function FullWidthTabs() {
 
 
   const { gilad, jason, antoine } = state;
-  
-  
+
+
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -205,19 +209,27 @@ export default function FullWidthTabs() {
 
   const handleChange1 = (event, newValue) => {
     setValue2(newValue);
+    setvariant('default')
+    setcolor("primary")
   };
   const handleChange2 = (event, newValue) => {
     setValue3(newValue);
+    setvariant('default')
+    setcolor("primary")
   };
   const handleChange3 = (event, newValue) => {
     setValue4(newValue);
+    setvariant('default')
+    setcolor("primary")
   };
   const handleChange4 = (event, newValue) => {
     setValue5(newValue);
+    setvariant('default')
+    setcolor("primary")
   };
   return (
     <div className={classes.root}>
-        <div>
+      <div>
         <Button
           ref={anchorRef}
           aria-controls={open ? "menu-list-grow" : undefined}
@@ -229,7 +241,8 @@ export default function FullWidthTabs() {
             component="a"
             href="#chip"
             clickable
-            variant="outlined"
+            variant={vari}
+            color={color}
           />
         </Button>
         <Popper
@@ -258,81 +271,81 @@ export default function FullWidthTabs() {
                       <b >Times</b>
                     </div>
                     <div className={classes.down}>
-                    <FormControl component="fieldset" className={classes.formControl}>
-                    
-        <FormGroup>
-        <div className={classes.price}>   
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="Outbound" {...a11yProps(0)} />
-          <Tab label="Return" {...a11yProps(1)} />
-          
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-            <div className={classes.departure}>
-         <FlightTakeoffIcon  color="disabled"/> <small>Departure</small>
-         <Slider
-        value={value2}
-        onChange={handleChange1}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-      />
-         </div>
-         <div className={classes.arrival}>
-         <FlightLandIcon  color="disabled"/> <small>Arrival</small>
-         <Slider
-        value={value3}
-        onChange={handleChange2}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-      />
-         </div>
+                      <FormControl component="fieldset" className={classes.formControl}>
+
+                        <FormGroup>
+                          <div className={classes.price}>
+                            <AppBar position="static" color="default">
+                              <Tabs
+                                value={value}
+                                onChange={handleChange}
+                                indicatorColor="primary"
+                                textColor="primary"
+                                variant="fullWidth"
+                                aria-label="full width tabs example"
+                              >
+                                <Tab label="Outbound" {...a11yProps(0)} />
+                                <Tab label="Return" {...a11yProps(1)} />
+
+                              </Tabs>
+                            </AppBar>
+                            <SwipeableViews
+                              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                              index={value}
+                              onChangeIndex={handleChangeIndex}
+                            >
+                              <TabPanel value={value} index={0} dir={theme.direction}>
+                                <div className={classes.departure}>
+                                  <FlightTakeoffIcon color="disabled" /> <small>Departure</small>
+                                  <Slider
+                                    value={value2}
+                                    onChange={handleChange1}
+                                    valueLabelDisplay="auto"
+                                    aria-labelledby="range-slider"
+                                    getAriaValueText={valuetext}
+                                  />
+                                </div>
+                                <div className={classes.arrival}>
+                                  <FlightLandIcon color="disabled" /> <small>Arrival</small>
+                                  <Slider
+                                    value={value3}
+                                    onChange={handleChange2}
+                                    valueLabelDisplay="auto"
+                                    aria-labelledby="range-slider"
+                                    getAriaValueText={valuetext}
+                                  />
+                                </div>
 
 
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-        <div className={classes.departure}>
-         <FlightTakeoffIcon  className={classes.icon1} color="disabled"/> <small>Departure</small>
-         <Slider
-        value={value4}
-        onChange={handleChange3}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-      />
-         </div>
-         <div className={classes.arrival}>
-         <FlightLandIcon className={classes.icon1} color="disabled"/> <small>Arrival</small>
-         <Slider
-        value={value5}
-        onChange={handleChange4}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-      />
-         </div>
+                              </TabPanel>
+                              <TabPanel value={value} index={1} dir={theme.direction}>
+                                <div className={classes.departure}>
+                                  <FlightTakeoffIcon className={classes.icon1} color="disabled" /> <small>Departure</small>
+                                  <Slider
+                                    value={value4}
+                                    onChange={handleChange3}
+                                    valueLabelDisplay="auto"
+                                    aria-labelledby="range-slider"
+                                    getAriaValueText={valuetext}
+                                  />
+                                </div>
+                                <div className={classes.arrival}>
+                                  <FlightLandIcon className={classes.icon1} color="disabled" /> <small>Arrival</small>
+                                  <Slider
+                                    value={value5}
+                                    onChange={handleChange4}
+                                    valueLabelDisplay="auto"
+                                    aria-labelledby="range-slider"
+                                    getAriaValueText={valuetext}
+                                  />
+                                </div>
 
 
-        </TabPanel>
-      </SwipeableViews>
-</div>
-    </FormGroup>
-        </FormControl> 
+                              </TabPanel>
+                            </SwipeableViews>
+                          </div>
+                        </FormGroup>
+                      </FormControl>
                     </div>
                   </MenuList>
                 </ClickAwayListener>
@@ -342,7 +355,7 @@ export default function FullWidthTabs() {
         </Popper>
       </div>
 
-</div>
+    </div>
 
   );
 }
