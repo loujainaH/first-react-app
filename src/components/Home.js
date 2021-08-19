@@ -265,9 +265,9 @@ function Home({ tripType, setTripType }) {
 
 
               <div className={classes.input1}>
-                <SearchTest placeholder="From" data={airports.searchByAirportName} />
+                <SearchTest placeholder="From" data={airports} />
 
-                <Where placeholder="To" data={airports.searchByAirportName} />
+                <Where placeholder="To" data={airports} />
               </div>
 
               <div className={classes.calender}>

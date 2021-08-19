@@ -6,6 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import FlightIcon from '@material-ui/icons/Flight';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import * as airports from "airportsjs"
 
 import { spacing } from '@material-ui/system';
 import { makeStyles } from '@material-ui/core/styles';
@@ -61,9 +62,9 @@ export default function BasicTextFields({ placeholder }) {
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
-    });
+    const newFilter = airports.searchByAirportName(searchWord)
+    //   return value.title.toLowerCase().includes(searchWord.toLowerCase());
+    // });
 
     if (searchWord === "") {
       setFilteredData([]);
@@ -107,15 +108,17 @@ export default function BasicTextFields({ placeholder }) {
     const handleFilter = (event) => {
       const searchWord = event.target.value;
       setWordEntered(searchWord);
-      const newFilter = data.filter((value) => {
-        return value.title.toLowerCase().includes(searchWord.toLowerCase());
-      });
+      const newFilter = airports.searchByAirportName(searchWord)
+      //   (value) => {
+      //   return value.title.toLowerCase().includes(searchWord.toLowerCase());
+      // });
 
       if (searchWord === "") {
         setFilteredData([]);
       } else {
         setFilteredData(newFilter);
       }
+      console.log("new filter", newFilter)
     };
 
     const clearInput = () => {
@@ -142,8 +145,8 @@ export default function BasicTextFields({ placeholder }) {
 
               {filteredData.slice(0, 15).map((value, key) => {
                 return (
-                  <a className="aFrom" onClick={(e) => clicked(value.title, e)} target="_blank">
-                    <p>{value.title} </p>
+                  <a className="aFrom" onClick={(e) => clicked(value.name, e)} target="_blank">
+                    <p>{value.name} </p>
                   </a>
 
                 );

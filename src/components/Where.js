@@ -60,17 +60,20 @@ export default function BasicTextFields({ placeholder }) {
   // const value = {input};
   const handleFilter = (event) => {
     const searchWord = event.target.value;
+    console.log("value", searchWord)
     setWordEntered(searchWord);
-    const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
-    });
-
+    const newFilter = airports.searchByAirportName(searchWord)
+    //   (value) => {
+    //   return value.name.toLowerCase().includes(searchWord.toLowerCase());
+    // });
+    console.log("new filter", newFilter)
     if (searchWord === "") {
       setFilteredData([]);
     } else {
       setFilteredData(newFilter);
     }
-    console.log({ filteredData })
+    console.log("filteredData", filteredData)
+
   };
 
   const final = null;
@@ -138,8 +141,8 @@ export default function BasicTextFields({ placeholder }) {
 
               {filteredData.slice(0, 15).map((value, key) => {
                 return (
-                  <a className="aTo" onClick={(e) => clicked(value.title, e)} target="_blank">
-                    <p>{value.title} </p>
+                  <a className="aTo" onClick={(e) => clicked(value.name, e)} target="_blank">
+                    <p>{value.name} </p>
                   </a>
 
                 );
