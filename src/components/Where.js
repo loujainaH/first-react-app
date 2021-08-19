@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import "../components/Where.css";
 import data from "../Data.json";
+import * as airports from "airportsjs"
+
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import FlightIcon from '@material-ui/icons/Flight';
@@ -28,63 +30,8 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
 
   },
-  // results:{
-  //     position:'absolute',
-  //     display:"flex",
-  //     // flexDirection:"row",
-  //     // top:'1000 px',
-  //     // left:'200'
 
-  // },
-  // dataResultFrom:{
-  // position:'relative',
-  // display:"flex",
-  // flexDirection:"column",
-  // top:'1000 px',
-  // left:'200',
-  // width:"10px",
-  // margintop: "5px",
-  // width: "300px",
-  // height: "200px",
-  // backgroundcolor: "white",
-  // color:"white",
-  // boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-  // overflow: "hidden",
 
-  //   position: "relative",
-  //   margintop: "5px",
-  //   width: "300px",
-  //   height: "200px",
-  //   backgroundcolor: "white",
-  //   boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-  //   overflow: "hidden",
-  //    overflowy: "auto",
-  //   /* border-color: lightblue; */
-  //   borderradius : "8px",
-  // },
-
-  // display:"flex",
-  // flexDirection:"column",
-  //     position: "absolute",
-  //     marginTop: "5px",
-  //     width: "300px",
-  //     height: "200px",
-  //     backgroundcolor: "white",
-  //     boxshadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-  //     overflow: "hidden",
-  //     overflowy: "auto",
-  //     borderradius: "8px",
-
-  // },
-
-  // searchInput:{
-  //   // top: "0px",
-  //   width: "226px",
-  //   position: "absolute", 
-  //   marginTop:"70px",
-  //   marginLeft: "25px",
-  //   // left: "14px",
-  // },
   a: {
     '&:hover': {
       color: "grey",
@@ -135,23 +82,6 @@ export default function BasicTextFields({ placeholder }) {
     setFilteredData([]);
   };
 
-
-  // const  handleSearchSelection = ({ value }) => {
-  //     this.setState({
-  //       searchSelection: value,
-  //       placeholder: value
-  //     })};
-
-
-  //  const handleInputChange=(e)=> {
-  //     const target = e.target;
-  //     const value = target.value;
-  //     const name = target.name;
-
-  //     setState({
-  //       [name]: value
-  //     });
-  //   }
 
 
   function SearchBar({ placeholder, data }) {

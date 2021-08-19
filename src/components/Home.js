@@ -7,7 +7,7 @@ import { Dropdown } from 'react-bootstrap';
 import { render } from '@testing-library/react';
 // import React from 'react';
 import BookData from "../Data.json";
-
+import * as airports from "airportsjs"
 import { makeStyles } from '@material-ui/core/styles';
 import SearchTest from "../components/Searchbar"
 import Where from "../components/Where"
@@ -265,9 +265,9 @@ function Home({ tripType, setTripType }) {
 
 
               <div className={classes.input1}>
-                <SearchTest placeholder="From" data={BookData} />
+                <SearchTest placeholder="From" data={airports.searchByAirportName} />
 
-                <Where placeholder="To" data={BookData} />
+                <Where placeholder="To" data={airports.searchByAirportName} />
               </div>
 
               <div className={classes.calender}>
