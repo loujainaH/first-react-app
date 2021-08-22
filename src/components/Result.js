@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BookData from "../Data.json";
 import SearchTest from "../components/Searchbar"
 import SearchButton from "../components/SearchButton"
+import { connect } from "react-redux";
 
 import '../components/Result.css'
 // import React from 'react';
@@ -25,29 +26,7 @@ import React, { useState, setState } from "react";
 import Searchbar from "../components/Searchbar"
 import Where from "../components/Where"
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   display: 'flex',
-  //   justifyContent: 'flex-start',
-  //   flexWrap: 'wrap',
-  //   alignSelf: "auto",
-  //   flexShrink: 3,
-  //   '& > *': {
-  //     margin: theme.spacing(0.25),
-  //     color: "#818181",
-  //   },
-  //   pass: {
-  //     innerWidth: "3%",
-  //   },
-  //   searchbars: {
-  //     // height:"56px",
-  //     // display: 'flex',
-  //     // flexDirection:"column",
-  //     // justifyContent: 'flex-start',
-  //     // flexWrap: 'wrap',
-  //     // alignSelf:"auto",
-  //     // backgroundColor : "blue"
-  //   }
-  // },
+
   root: {
 
     margin: "8px",
@@ -91,7 +70,33 @@ const useStyles = makeStyles((theme) => ({
 var option = ""
 var sum = 0;
 var t = "One way";
-function Result({ tripType, setTripType }) {
+
+const mapStateToProps = (state) => {
+  //console.log(state.DetailsReducer.details.destination)
+  return {
+    destination_name: state.DetailsReducer.details.destination_name,
+    destination: state.DetailsReducer.details.destination,
+    origin_name: state.DetailsReducer.details.origin_name,
+
+  };
+};
+const mapDispatchToState = (dispatch) => {
+  return {
+    setDestination: (destination) => {
+      dispatch({ type: 'setDestination', payload: destination });
+    },
+    setDestinationName: (destination_name) => {
+      dispatch({ type: 'setDestinationName', payload: destination_name });
+    },
+    setOriginName: (origin_name) => {
+      dispatch({ type: 'setOriginName', payload: origin_name });
+    },
+
+  };
+};
+export default connect(mapStateToProps, mapDispatchToState)(Result);
+
+function Result({ tripType, setTripType, destination_name, origin_name }) {
   const classes = useStyles();
 
   // let dropDownValue= "Round Trip";
@@ -238,9 +243,9 @@ function Result({ tripType, setTripType }) {
 
 
           <div className={classes.input1}>
-            <SearchTest placeholder="From" data={BookData} />
+            <SearchTest placeholder={origin_name} data={BookData} />
 
-            <Where placeholder="To" data={BookData} />
+            <Where placeholder={destination_name} data={BookData} />
           </div>
 
           <div className={classes.calender}>
@@ -265,4 +270,4 @@ function Result({ tripType, setTripType }) {
 
 // }
 
-export default Result;
+//export default Result;

@@ -1,29 +1,179 @@
 
+// import React, { useState } from "react";
+// import "../components/Searchbar.css";
+// import SearchIcon from "@material-ui/icons/Search";
+// import CloseIcon from "@material-ui/icons/Close";
+// import FlightIcon from '@material-ui/icons/Flight';
+// import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+// import InputAdornment from '@material-ui/core/InputAdornment';
+// import * as airports from "airportsjs"
+// import { connect } from "react-redux";
+
+// import { spacing } from '@material-ui/system';
+// import { makeStyles } from '@material-ui/core/styles';
+// import TextField from '@material-ui/core/TextField';
+// import data from "../Data.json";
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+
+//     margin: theme.spacing(1),
+//     marginLeft: 0,
+//     height: "71px",
+
+//     // padding: '0px 330px',
+
+//     // position:'absolute',
+//     display: "flex",
+//   },
+//   text: {
+//     display: "flex",
+//     flexDirection: "row",
+//     color: "black",
+
+//   },
+
+
+//   a: {
+//     '&:hover': {
+//       color: "grey",
+//     },
+//     textdecoration: "none!important",
+//     color: "black"
+//   },
+
+//   testssss: {
+//     height: "100px",
+//     width: "100px",
+//     backgroundcolor: "green"
+//   }
+
+
+// }
+// ));
+
+
+// const mapStateToProps = (state) => {
+//   //console.log(state.DetailsReducer.details.destination)
+//   return {
+//     origin: state.DetailsReducer.details.origin,
+//   };
+// };
+// const mapDispatchToState = (dispatch) => {
+//   return {
+//     setOrigin: (origin) => {
+//       dispatch({ type: 'setOrigin', payload: origin });
+//     },
+
+//   };
+// };
+// export default connect(mapStateToProps, mapDispatchToState)(BasicTextFields);
+
+
+// function BasicTextFields({ placeholder, origin, setOrigin }) {
+//   const styles = useStyles({
+
+//   });
+//   const [filteredData, setFilteredData] = useState([]);
+//   const [wordEntered, setWordEntered] = useState("");
+//   // const value = {input};
+//   const handleFilter = (event) => {
+//     const searchWord = event.target.value;
+//     setWordEntered(searchWord);
+//     const newFilter = airports.searchByAirportName(searchWord)
+//     //   return value.title.toLowerCase().includes(searchWord.toLowerCase());
+//     // });
+
+//     if (searchWord === "") {
+//       setFilteredData([]);
+//     } else {
+//       setFilteredData(newFilter);
+//     }
+//     console.log({ filteredData })
+//   };
+
+//   const final = null;
+//   const clicked = (value, e) => {
+//     // setWordEntered(value.name);
+//     // console.log({ wordEntered });
+//     // console.log({ value });
+//     // // final={value};
+//     // setFilteredData([]);
+//     // setOrigin(value.iata)
+//     // console.log("origin", origin)
+//     setWordEntered(value.name);
+//     console.log({ wordEntered });
+//     console.log({ value });
+//     // final={value};
+//     setFilteredData([]);
+//     setOrigin(value.iata)
+//     console.log("origin:", origin)
+//   };
+
+
+
+//   return (
+//     <form className={styles.root} noValidate autoComplete="off">
+//       <div className={styles.text}>
+
+//         <div className="results">
+//           <div className="searchInputFrom">
+//             <TextField id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled"
+
+//               InputProps={{
+//                 startAdornment: <InputAdornment position="start"> <FlightTakeoffIcon /></InputAdornment>,
+//               }} />
+//           </div>
+//           {filteredData.length != 0 && (
+//             <div className="dataResultFrom" >
+
+//               {filteredData.slice(0, 15).map((value, key) => {
+//                 return (
+//                   <a className="aFrom" onClick={(e) => clicked(value, e)} target="_blank">
+//                     <p>{value.name} </p>
+//                   </a>
+
+//                 );
+//               })}
+//             </div>
+//           )}
+//         </div>
+
+
+//         {/* <TextField id="filled-basic" label="Filled" variant="filled" /> */}
+//       </div>
+
+//     </form>
+//   );
+// }
+
+
+
 import React, { useState } from "react";
-import "../components/Searchbar.css";
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import "../components/Where.css";
+import data from "../Data.json";
+import * as airports from "airportsjs"
+import { connect } from "react-redux";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import FlightIcon from '@material-ui/icons/Flight';
+import { blue } from "@material-ui/core/colors";
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import * as airports from "airportsjs"
-
-import { spacing } from '@material-ui/system';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import data from "../Data.json";
-
+import FormControl from '@material-ui/core/FormControl';
+import FlightLandIcon from '@material-ui/icons/FlightLand';
 const useStyles = makeStyles((theme) => ({
   root: {
 
     margin: theme.spacing(1),
-    marginLeft: 0,
     height: "71px",
-
-    // padding: '0px 330px',
-
-    // position:'absolute',
-    display: "flex",
+    flex: 1,
+    // position: 'absolute',
+    direction: "flex",
   },
   text: {
     display: "flex",
@@ -50,56 +200,66 @@ const useStyles = makeStyles((theme) => ({
 
 }
 ));
+const mapStateToProps = (state) => {
+  //console.log(state.DetailsReducer.details.destination)
+  return {
+    origin: state.DetailsReducer.details.origin,
+    origin_name: state.DetailsReducer.details.origin_name,
+
+  };
+};
+const mapDispatchToState = (dispatch) => {
+  return {
+    setOrigin: (origin) => {
+      dispatch({ type: 'setOrigin', payload: origin });
+    },
+    setOriginName: (origin_name) => {
+      dispatch({ type: 'setOriginName', payload: origin_name });
+    },
+
+  };
+  console.log(origin)
+};
+export default connect(mapStateToProps, mapDispatchToState)(BasicTextFields);
 
 
-export default function BasicTextFields({ placeholder }) {
+function BasicTextFields({ placeholder, origin, setOrigin, setOriginName, origin_name }) {
   const styles = useStyles({
 
   });
   const [filteredData, setFilteredData] = useState([]);
-  const [wordEntered, setWordEntered] = useState("");
+  const [wordEntered, setWordEntered] = useState(origin_name);
   // const value = {input};
   const handleFilter = (event) => {
     const searchWord = event.target.value;
+    console.log("value", searchWord)
     setWordEntered(searchWord);
     const newFilter = airports.searchByAirportName(searchWord)
-    //   return value.title.toLowerCase().includes(searchWord.toLowerCase());
+    //   (value) => {
+    //   return value.name.toLowerCase().includes(searchWord.toLowerCase());
     // });
-
+    console.log("new filter", newFilter)
     if (searchWord === "") {
       setFilteredData([]);
     } else {
       setFilteredData(newFilter);
     }
-    console.log({ filteredData })
+    console.log("filteredData", filteredData)
+
   };
 
   const final = null;
   const clicked = (value, e) => {
-    setWordEntered(value);
+    setWordEntered(value.name);
     console.log({ wordEntered });
     console.log({ value });
     // final={value};
     setFilteredData([]);
+    setOriginName(value.name)
+    setOrigin(value.iata)
+    console.log("origin", origin)
   };
 
-
-  // const  handleSearchSelection = ({ value }) => {
-  //     this.setState({
-  //       searchSelection: value,
-  //       placeholder: value
-  //     })};
-
-
-  //  const handleInputChange=(e)=> {
-  //     const target = e.target;
-  //     const value = target.value;
-  //     const name = target.name;
-
-  //     setState({
-  //       [name]: value
-  //     });
-  //   }
 
 
   function SearchBar({ placeholder, data }) {
@@ -108,17 +268,15 @@ export default function BasicTextFields({ placeholder }) {
     const handleFilter = (event) => {
       const searchWord = event.target.value;
       setWordEntered(searchWord);
-      const newFilter = airports.searchByAirportName(searchWord)
-      //   (value) => {
-      //   return value.title.toLowerCase().includes(searchWord.toLowerCase());
-      // });
+      const newFilter = data.filter((value) => {
+        return value.title.toLowerCase().includes(searchWord.toLowerCase());
+      });
 
       if (searchWord === "") {
         setFilteredData([]);
       } else {
         setFilteredData(newFilter);
       }
-      console.log("new filter", newFilter)
     };
 
     const clearInput = () => {
@@ -132,20 +290,33 @@ export default function BasicTextFields({ placeholder }) {
     <form className={styles.root} noValidate autoComplete="off">
       <div className={styles.text}>
 
-        <div className="results">
-          <div className="searchInputFrom">
-            <TextField id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled"
+        <div className="resultsTo">
+          <div className="searchInputTo">
 
+            <TextField
+
+              id="filled-basic" value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled"
               InputProps={{
-                startAdornment: <InputAdornment position="start"> <FlightTakeoffIcon /></InputAdornment>,
+                startAdornment: <InputAdornment position="start"> <FlightLandIcon /></InputAdornment>,
               }} />
+            {/* <FormControl >
+              <InputLabel htmlFor="input-with-icon-adornment">To</InputLabel>
+              <Input
+                value={wordEntered} onChange={(event) => { handleFilter(event) }} type="search" label={placeholder} variant="filled"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <FlightTakeoffIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl> */}
           </div>
           {filteredData.length != 0 && (
-            <div className="dataResultFrom" >
+            <div className="dataResultTo" >
 
               {filteredData.slice(0, 15).map((value, key) => {
                 return (
-                  <a className="aFrom" onClick={(e) => clicked(value.name, e)} target="_blank">
+                  <a className="aTo" onClick={(e) => clicked(value, e)} target="_blank">
                     <p>{value.name} </p>
                   </a>
 

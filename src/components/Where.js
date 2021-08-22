@@ -52,8 +52,9 @@ const useStyles = makeStyles((theme) => ({
 const mapStateToProps = (state) => {
   //console.log(state.DetailsReducer.details.destination)
   return {
-    destination: state.DetailsReducer.details.destination,
     destination_name: state.DetailsReducer.details.destination_name,
+    destination: state.DetailsReducer.details.destination,
+
   };
 };
 const mapDispatchToState = (dispatch) => {
@@ -61,7 +62,7 @@ const mapDispatchToState = (dispatch) => {
     setDestination: (destination) => {
       dispatch({ type: 'setDestination', payload: destination });
     },
-    setDestinationName: (destination) => {
+    setDestinationName: (destination_name) => {
       dispatch({ type: 'setDestinationName', payload: destination_name });
     },
 
@@ -75,7 +76,7 @@ function BasicTextFields({ placeholder, destination, setDestination, destination
 
   });
   const [filteredData, setFilteredData] = useState([]);
-  const [wordEntered, setWordEntered] = useState(destination);
+  const [wordEntered, setWordEntered] = useState(destination_name);
   // const value = {input};
   const handleFilter = (event) => {
     const searchWord = event.target.value;
@@ -102,6 +103,7 @@ function BasicTextFields({ placeholder, destination, setDestination, destination
     console.log({ value });
     // final={value};
     setFilteredData([]);
+    setDestinationName(value.name)
     setDestination(value.iata)
     console.log("destination", destination)
   };

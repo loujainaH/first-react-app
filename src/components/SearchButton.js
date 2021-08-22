@@ -9,6 +9,8 @@ import SaveIcon from '@material-ui/icons/Save';
 import SearchIcon from '@material-ui/icons/Search';
 import '../components/SearchButton.css'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -26,9 +28,51 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function IconLabelButtons() {
-  const classes = useStyles();
 
+
+const mapStateToProps = (state) => {
+  //console.log(state.DetailsReducer.details.destination)
+  return {
+    details: state.DetailsReducer.details
+
+  };
+};
+
+
+export default connect(mapStateToProps)(IconLabelButtons);
+
+
+function IconLabelButtons({ details }) {
+
+
+  const classes = useStyles();
+  const func = async () => {
+    let reqBody = {
+      data: {
+        passengers: [
+          {
+            type: "adult"
+          }
+        ],
+        slices: [
+          {
+            origin: details.origin,
+            destination: details.destination,
+            departure_date: "2021-08-26"
+          }
+        ],
+        cabin_class: "economy"
+      }
+
+    }
+
+
+
+    let response = await axios.post("http://app.stamped.travel:8080/offers/pagination", reqBody)
+    console.log("lllllllll", response)
+    console.log("lllllllll", response.data.cheapestFlights[0][0].owner.name)
+    console.log("origin:", details.origin)
+  }
   return (
     <div className={classes.buttonDiv}>
       <ul>
@@ -42,6 +86,7 @@ export default function IconLabelButtons() {
               size="large"
               className={classes.button}
               startIcon={<SearchIcon />}
+              onClick={func}
             >
               Search
             </Button>

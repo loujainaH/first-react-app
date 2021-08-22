@@ -22,37 +22,14 @@ import Counter3 from "../components/Counter3";
 import Counter4 from "../components/Counter4";
 import React, { useState, setState } from "react";
 import SearchButton from "../components/SearchButton"
-
-// import {count } from "../components/Counter3";
-
-// import BasicDateRangePicker from '../BasicDateRangePicker.js'
-// import add from '../images/Add.png'
-// import FlightIcon from '@material-ui/icons/Flight';
-// import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-// const Home = () => {
-//     const selected="";
+import { connect } from "react-redux";
 
 
-//     return ( 
-//         <div className="homecontent">
-//             <img src={mountain} alt="" className="mountain"/>
-//             <div className="search">
-//                 <svg className="rectangle"></svg>
-//                     <div className="filters">
-//                         {/* <h1>Round trip</h1>
-//                     <img src={dd} alt="" className="dropD"/>
-//                     <img src={user} alt="" className="user"/>
-//                     <h1>1</h1>
-//                     <img src={dd} alt="" className="dropD"/>
-//                     <h1>economy</h1>
-//                     <img src={dd} alt="" className="dropD"/> */}
-//              
 
-// export default Home;
 var option = ""
 var sum = 0;
 var t = "One way";
-// import React, { useState } from "react";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -97,31 +74,69 @@ const useStyles = makeStyles((theme) => ({
 
 
 }));
+const mapStateToProps = (state) => {
+  //console.log(state.DetailsReducer.details.destination)
+  return {
+    destination_name: state.DetailsReducer.details.destination_name,
+    destination: state.DetailsReducer.details.destination,
+    origin_name: state.DetailsReducer.details.origin_name,
+    tripType: state.DetailsReducer.details.tripType,
+    cabin_class: state.DetailsReducer.details.cabin_class,
+    Adults: state.DetailsReducer.details.Adults,
+    children: state.DetailsReducer.details.children,
+    infants_on_lap: state.DetailsReducer.details.infants_on_lap,
+    infants_in_seat: state.DetailsReducer.details.infants_in_seat,
+    totalPassengers: state.DetailsReducer.details.totalPassengers,
+  };
+};
+const mapDispatchToState = (dispatch) => {
+  return {
+    setDestination: (destination) => {
+      dispatch({ type: 'setDestination', payload: destination });
+    },
+    setDestinationName: (destination_name) => {
+      dispatch({ type: 'setDestinationName', payload: destination_name });
+    },
+    setOriginName: (origin_name) => {
+      dispatch({ type: 'setOriginName', payload: origin_name });
+    },
+
+    setTripType: (tripType) => {
+      dispatch({ type: 'setTripType', payload: tripType });
+    },
+
+    setCabinClass: (cabin_class) => {
+      dispatch({ type: 'setCabinClass', payload: cabin_class });
+    },
+
+    setAdult: (Adult) => {
+      dispatch({ type: 'setAdult', payload: Adult });
+    },
+    setChildren: (children) => {
+      dispatch({ type: 'setChildren', payload: children });
+    },
+    setInfantsOL: (infants_on_lap) => {
+      dispatch({ type: 'setInfantsOL', payload: infants_on_lap });
+    },
+    setInfantsIS: (infants_in_seat) => {
+      dispatch({ type: 'setInfantsIS', payload: infants_in_seat });
+    },
+    setTotalPassengers: (totalPassengers) => {
+      dispatch({ type: 'setTotalPassengers', payload: totalPassengers });
+    },
 
 
-function Home({ tripType, setTripType }) {
+  };
+};
+export default connect(mapStateToProps, mapDispatchToState)(Home);
+
+
+function Home({ tripType, setTripType, cabin_class, Adult, children, infants_on_lap, infants_in_seat }) {
   const classes = useStyles();
-  // let dropDownValue= "Round Trip";
-  // let classValue='Economy';
+
   const [dropDownValue, setdropDownValue] = useState("Round Trip");
   const [classValue, setclassValue] = useState('Economy');
 
-  //   constructor(props) {
-  //     super();
-
-  //     this.state = {
-  //       dropDownValue: "Round Trip",
-
-  //       classValue:'Economy'
-  // }}
-
-
-
-  // countSum(){
-  //   console.log(count)
-  //   sum =count+1;
-
-  // }
 
   const renderCalender = () => {
     console.log("hiiiiii", option)
@@ -293,6 +308,6 @@ function Home({ tripType, setTripType }) {
 }
 
 
-// }
 
-export default Home;
+
+// export default Home;
