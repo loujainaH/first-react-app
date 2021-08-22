@@ -70,7 +70,7 @@ const mapDispatchToState = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToState)(BasicTextFields);
 
 
-function BasicTextFields({ placeholder, destination, setDestination, destination_name, destination_name }) {
+function BasicTextFields({ placeholder, destination, setDestination, destination_name, setDestinationName }) {
   const styles = useStyles({
 
   });
