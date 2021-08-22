@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import "../components/Where.css";
 import data from "../Data.json";
 import * as airports from "airportsjs"
-
+import { connect } from "react-redux";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import FlightIcon from '@material-ui/icons/Flight';
@@ -49,14 +49,33 @@ const useStyles = makeStyles((theme) => ({
 
 }
 ));
+const mapStateToProps = (state) => {
+  //console.log(state.DetailsReducer.details.destination)
+  return {
+    destination: state.DetailsReducer.details.destination,
+    destination_name: state.DetailsReducer.details.destination_name,
+  };
+};
+const mapDispatchToState = (dispatch) => {
+  return {
+    setDestination: (destination) => {
+      dispatch({ type: 'setDestination', payload: destination });
+    },
+    setDestinationName: (destination) => {
+      dispatch({ type: 'setDestinationName', payload: destination_name });
+    },
+
+  };
+};
+export default connect(mapStateToProps, mapDispatchToState)(BasicTextFields);
 
 
-export default function BasicTextFields({ placeholder }) {
+function BasicTextFields({ placeholder, destination, setDestination, destination_name, destination_name }) {
   const styles = useStyles({
 
   });
   const [filteredData, setFilteredData] = useState([]);
-  const [wordEntered, setWordEntered] = useState("");
+  const [wordEntered, setWordEntered] = useState(destination);
   // const value = {input};
   const handleFilter = (event) => {
     const searchWord = event.target.value;
@@ -78,11 +97,13 @@ export default function BasicTextFields({ placeholder }) {
 
   const final = null;
   const clicked = (value, e) => {
-    setWordEntered(value);
+    setWordEntered(value.name);
     console.log({ wordEntered });
     console.log({ value });
     // final={value};
     setFilteredData([]);
+    setDestination(value.iata)
+    console.log("destination", destination)
   };
 
 
@@ -141,7 +162,7 @@ export default function BasicTextFields({ placeholder }) {
 
               {filteredData.slice(0, 15).map((value, key) => {
                 return (
-                  <a className="aTo" onClick={(e) => clicked(value.name, e)} target="_blank">
+                  <a className="aTo" onClick={(e) => clicked(value, e)} target="_blank">
                     <p>{value.name} </p>
                   </a>
 
