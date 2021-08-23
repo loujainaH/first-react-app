@@ -58,7 +58,7 @@ function IconLabelButtons({ details }) {
           {
             origin: details.origin,
             destination: details.destination,
-            departure_date: "2021-08-26"
+            departure_date: "2021-08-30"
           }
         ],
         cabin_class: "economy"
@@ -66,12 +66,13 @@ function IconLabelButtons({ details }) {
 
     }
 
-
+    //resluts.slices.semg.length
 
     let response = await axios.post("http://app.stamped.travel:8080/offers/pagination", reqBody)
     console.log("lllllllll", response)
     console.log("lllllllll", response.data.cheapestFlights[0][0].owner.name)
     console.log("origin:", details.origin)
+    console.log("length:", response.data.cheapestFlights[0].length)
   }
   return (
     <div className={classes.buttonDiv}>

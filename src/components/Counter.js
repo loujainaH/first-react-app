@@ -4,7 +4,29 @@ import AddBoxRoundedIcon from "@material-ui/icons/AddCircleRounded";
 import IconButton from "@material-ui/core/IconButton";
 import RemoveBoxRoundedIcon from '@material-ui/icons/RemoveCircleRounded';
 import { SettingsCellOutlined } from "@material-ui/icons";
-function Counter({ count, setCount }) {
+import { connect } from "react-redux";
+
+
+const mapStateToProps = (state) => {
+  //console.log(state.DetailsReducer.details.destination)
+  return {
+    Adults: state.DetailsReducer.details.Adults,
+  };
+};
+const mapDispatchToState = (dispatch) => {
+  return {
+
+    setAdult: (Adults) => {
+      dispatch({ type: 'setAdult', payload: Adults });
+    },
+
+
+  };
+};
+export default connect(mapStateToProps, mapDispatchToState)(Counter);
+
+
+function Counter({ count, setCount, Adults, setAdult }) {
   // Set the initial count state to zero, 0
 
   const [count2, setCount2] = useState(0);
@@ -13,37 +35,53 @@ function Counter({ count, setCount }) {
 
   // Create handleIncrement event handler
   const handleIncrement = () => {
-    if (count === 1) {
+    if (Adults === 1) {
       // setCount(1);
-      setCount(count => count + 1);
+      setAdult(Adults + 1);
+
       setCol("primary")
     }
 
     else {
-      setCount(count => count + 1);
+      setAdult(Adults + 1);
       setCol("primary")
     }
-    console.log("handleInc ", count)
+    console.log("handleInc ", Adults)
   };
 
-  const handleIncrement2 = () => {
-    if (count2 === 1) {
-      // setCount(1);
-      setCount2(count2 => count2 + 1);
-      setCol2("primary")
-    }
+  // const handleIncrement = () => {
+  //   if (count === 1) {
+  //     // setCount(1);
+  //     setCount(count => count + 1);
 
-    else {
-      setCount2(count2 => count2 + 1);
-      setCol("primary")
-    }
-    console.log("handleInc2 ", count2)
-  };
+  //     setCol("primary")
+  //   }
+
+  //   else {
+  //     setCount(count => count + 1);
+  //     setCol("primary")
+  //   }
+  //   console.log("handleInc ", count)
+  // };
+
+  // const handleIncrement2 = () => {
+  //   if (count2 === 1) {
+  //     // setCount(1);
+  //     setCount2(count2 => count2 + 1);
+  //     setCol2("primary")
+  //   }
+
+  //   else {
+  //     setCount2(count2 => count2 + 1);
+  //     setCol("primary")
+  //   }
+  //   console.log("handleInc2 ", count2)
+  // };
 
   //Create handleDecrement event handler
   const handleDecrement = () => {
-    if (count === 0) {
-      setCount(0);
+    if (Adults === 0) {
+      setAdult(0);
       setCol("disabled")
     }
     // if(count==1){
@@ -51,33 +89,33 @@ function Counter({ count, setCount }) {
 
     // }
     else {
-      setCount(prevCount => prevCount - 1);
+      setAdult(Adults - 1);
     }
   };
 
-  const handleDecrement2 = () => {
-    if (count2 === 0) {
-      setCount2(0);
-      setCol2("disabled")
-    }
-    // if(count==1){
-    //     setCol("disabled")
+  // const handleDecrement2 = () => {
+  //   if (count2 === 0) {
+  //     setCount2(0);
+  //     setCol2("disabled")
+  //   }
+  //   // if(count==1){
+  //   //     setCol("disabled")
 
-    // }
-    else {
-      setCount2(prevCount2 => prevCount2 - 1);
-    }
-  };
+  //   // }
+  //   else {
+  //     setCount2(prevCount2 => prevCount2 - 1);
+  //   }
+  // };
   const iconColor = (value) => {
-    if (count + 1 === 0) {
+    if (Adults + 1 === 0) {
       setCol("disabled")
       console.log("disabled", { count })
     }
-    if (count == 1 && value === "dec") {
+    if (Adults == 1 && value === "dec") {
       setCol("disabled")
       // console.log("ahmed")
     }
-    else if (count === 0 && value === "dec") {
+    else if (Adults === 0 && value === "dec") {
       setCol("disabled")
     }
     else {
@@ -86,23 +124,6 @@ function Counter({ count, setCount }) {
     }
   }
 
-  const iconColor2 = (value) => {
-    if (count2 + 1 === 0) {
-      setCol2("disabled")
-      console.log("disabled", { count2 })
-    }
-    if (count2 == 1 && value === "dec") {
-      setCol2("disabled")
-      // console.log("ahmed")
-    }
-    else if (count2 === 0 && value === "dec") {
-      setCol2("disabled")
-    }
-    else {
-      setCol2("primary")
-      console.log("primary", { count2 })
-    }
-  }
   const func2 = () => {
     handleIncrement();
     iconColor("inc");
@@ -115,16 +136,7 @@ function Counter({ count, setCount }) {
   }
 
 
-  const funca = () => {
-    handleIncrement2();
-    iconColor2("inc");
-  }
-  const funcb = () => {
 
-    handleDecrement2();
-    iconColor2("dec");
-
-  }
   return (
     <div className="b">
       <div className="counter">
@@ -132,7 +144,7 @@ function Counter({ count, setCount }) {
         <IconButton color={col} sign="-" onClick={func} >
           <RemoveBoxRoundedIcon />
         </IconButton>
-        {count}
+        {Adults}
         <IconButton color="primary" sign="-" onClick={func2} >
           <AddBoxRoundedIcon />
         </IconButton>
@@ -145,4 +157,3 @@ function Counter({ count, setCount }) {
   );
 }
 
-export default Counter;

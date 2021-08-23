@@ -243,9 +243,9 @@ function Result({ tripType, setTripType, destination_name, origin_name }) {
 
 
           <div className={classes.input1}>
-            <SearchTest placeholder={origin_name} data={BookData} />
+            <SearchTest placeholder="From" data={BookData} />
 
-            <Where placeholder={destination_name} data={BookData} />
+            <Where placeholder="To" data={BookData} />
           </div>
 
           <div className={classes.calender}>

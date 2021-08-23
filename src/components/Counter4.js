@@ -4,7 +4,27 @@ import AddBoxRoundedIcon from "@material-ui/icons/AddCircleRounded";
 import IconButton from "@material-ui/core/IconButton";
 import RemoveBoxRoundedIcon from '@material-ui/icons/RemoveCircleRounded';
 import { SettingsCellOutlined } from "@material-ui/icons";
-function Counter4({count,setCount}) {
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  //console.log(state.DetailsReducer.details.destination)
+  return {
+    infants_on_lap: state.DetailsReducer.details.infants_on_lap,
+  };
+};
+const mapDispatchToState = (dispatch) => {
+  return {
+
+    setInfantsOL: (infants_on_lap) => {
+      dispatch({ type: 'setInfantsOL', payload: infants_on_lap });
+    },
+
+
+  };
+};
+export default connect(mapStateToProps, mapDispatchToState)(Counter4);
+
+function Counter4({ count, setCount, setInfantsOL, infants_on_lap }) {
   // Set the initial count state to zero, 0
 
   const [count2, setCount2] = useState(0);
@@ -13,141 +33,83 @@ function Counter4({count,setCount}) {
 
   // Create handleIncrement event handler
   const handleIncrement = () => {
-      if(count===1){
-        // setCount(1);
-        setCount(count => count + 1);
-        setCol("primary")
-      }
-      
-      else{
-    setCount(count => count + 1);
-    setCol("primary")}
-    console.log("handleInc ", count)
+    if (infants_on_lap === 1) {
+      // setCount(1);
+      setInfantsOL(infants_on_lap + 1);
+      setCol("primary")
+    }
+
+    else {
+      setInfantsOL(infants_on_lap + 1);
+      setCol("primary")
+    }
   };
 
-  const handleIncrement2 = () => {
-    if(count2===1){
-      // setCount(1);
-      setCount2(count2 => count2 + 1);
-      setCol2("primary")
-    }
-    
-    else{
-  setCount2(count2 => count2 + 1);
-  setCol("primary")}
-  console.log("handleInc2 ", count2)
-};
 
   //Create handleDecrement event handler
   const handleDecrement = () => {
-      if(count===0){
-    setCount(0);
-    setCol("disabled")}
+    if (infants_on_lap === 0) {
+      setInfantsOL(0);
+      setCol("disabled")
+    }
     // if(count==1){
     //     setCol("disabled")
-       
+
     // }
-    else{
-        setCount(prevCount => prevCount - 1);
+    else {
+      setInfantsOL(infants_on_lap - 1);
     }
   };
 
-  const handleDecrement2 = () => {
-    if(count2===0){
-  setCount2(0);
-  setCol2("disabled")}
-  // if(count==1){
-  //     setCol("disabled")
-     
-  // }
-  else{
-      setCount2(prevCount2 => prevCount2 - 1);
-  }
-};
-  const iconColor=(value)=>{
-if(count+1===0){
-    setCol("disabled")
-    console.log("disabled",{count})
-}
-if(count==1&&value==="dec"){
-    setCol("disabled")
-    // console.log("ahmed")
-}
-else if(count===0 && value==="dec"){
-    setCol("disabled")
- }
-else {
-    setCol("primary")
-    console.log("primary" ,{count})
-}
+
+  const iconColor = (value) => {
+    if (infants_on_lap + 1 === 0) {
+      setCol("disabled")
+      console.log("disabled", { infants_on_lap })
+    }
+    if (infants_on_lap == 1 && value === "dec") {
+      setCol("disabled")
+      // console.log("ahmed")
+    }
+    else if (infants_on_lap === 0 && value === "dec") {
+      setCol("disabled")
+    }
+    else {
+      setCol("primary")
+      console.log("primary", { count })
+    }
   }
 
-  const iconColor2=(value)=>{
-    if(count2+1===0){
-        setCol2("disabled")
-        console.log("disabled",{count2})
-    }
-    if(count2==1&&value==="dec"){
-        setCol2("disabled")
-        // console.log("ahmed")
-    }
-    else if(count2===0 && value==="dec"){
-        setCol2("disabled")
-     }
-    else {
-        setCol2("primary")
-        console.log("primary" ,{count2})
-    }
-      }
-  const func2 =()=>{
+
+  const func2 = () => {
     handleIncrement();
     iconColor("inc");
-}
-  const func =()=>{
-    
-      handleDecrement();
-      iconColor("dec");
-      
+  }
+  const func = () => {
+
+    handleDecrement();
+    iconColor("dec");
+
   }
 
 
-  const funca =()=>{
-    handleIncrement2();
-    iconColor2("inc");
-}
-  const funcb =()=>{
-    
-      handleDecrement2();
-      iconColor2("dec");
-      
-  }
+
   return (
     <div className="a4">
       <div className="counter4">
-      <small>On lap       </small> <small className="small">hiiiiii</small> 
+        <small>On lap       </small> <small className="small">hiiiiii</small>
 
-      <IconButton color={col} sign="-"  onClick={func} >
-        <RemoveBoxRoundedIcon />
-      </IconButton>
-        {count}
-        <IconButton color="primary" sign="-"   onClick={func2} >
-        <AddBoxRoundedIcon />
-      </IconButton>
+        <IconButton color={col} sign="-" onClick={func} >
+          <RemoveBoxRoundedIcon />
+        </IconButton>
+        {infants_on_lap}
+        <IconButton color="primary" sign="-" onClick={func2} >
+          <AddBoxRoundedIcon />
+        </IconButton>
       </div>
 
-{/* <div className="counter2">
-<IconButton color={col2} sign="-"  onClick={funcb} >
-  <RemoveBoxRoundedIcon />
-</IconButton>
-  <h5>{count2}</h5>
-  <IconButton color="primary" sign="-"   onClick={funca} >
-  <AddBoxRoundedIcon />
-</IconButton>
-</div> */}
 
-</div>
-    
+    </div>
+
   );
 }
-
-export default Counter4;

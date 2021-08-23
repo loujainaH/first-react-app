@@ -87,6 +87,8 @@ const mapStateToProps = (state) => {
     infants_on_lap: state.DetailsReducer.details.infants_on_lap,
     infants_in_seat: state.DetailsReducer.details.infants_in_seat,
     totalPassengers: state.DetailsReducer.details.totalPassengers,
+    Adults: state.DetailsReducer.details.Adults,
+
   };
 };
 const mapDispatchToState = (dispatch) => {
@@ -107,6 +109,9 @@ const mapDispatchToState = (dispatch) => {
 
     setCabinClass: (cabin_class) => {
       dispatch({ type: 'setCabinClass', payload: cabin_class });
+    },
+    setAdult: (Adults) => {
+      dispatch({ type: 'setAdult', payload: Adults });
     },
 
     setAdult: (Adult) => {
@@ -131,7 +136,7 @@ const mapDispatchToState = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToState)(Home);
 
 
-function Home({ tripType, setTripType, cabin_class, Adult, children, infants_on_lap, infants_in_seat }) {
+function Home({ tripType, setTripType, cabin_class, Adult, children, infants_on_lap, infants_in_seat, setTotalPassengers, totalPassengers, Adults }) {
   const classes = useStyles();
 
   const [dropDownValue, setdropDownValue] = useState("Round Trip");
@@ -166,7 +171,10 @@ function Home({ tripType, setTripType, cabin_class, Adult, children, infants_on_
 
   const handleOptions = (value) => {
     option = { value }
+    setTripType(value)
     console.log(option, "hhhh")
+    console.log(tripType, "tripType")
+
   }
   const someFunc = (value) => {
     handleOptions(value);
@@ -175,7 +183,8 @@ function Home({ tripType, setTripType, cabin_class, Adult, children, infants_on_
   }
 
   const Sum = () => {
-    return newcount1 + newcount2 + newcount3 + newcount4
+    setTotalPassengers(Adults + children + infants_in_seat + infants_on_lap)
+    // return newcount1 + newcount2 + newcount3 + newcount4
   }
 
   // render() { 
@@ -195,7 +204,8 @@ function Home({ tripType, setTripType, cabin_class, Adult, children, infants_on_
               <Dropdown >
                 <div className='selectedItem'>
                   <Dropdown.Toggle calssName="selected" variant="out-secontary" color='#818181'>
-                    {dropDownValue}
+                    {/* {dropDownValue} */}
+                    {tripType}
 
                   </Dropdown.Toggle></div>
                 <Dropdown.Menu>
@@ -218,6 +228,7 @@ function Home({ tripType, setTripType, cabin_class, Adult, children, infants_on_
                     <img src={user} alt="" />
                     {/* {Passerngers(newcount)} */}
                     {Sum()}
+                    {totalPassengers}
                   </Dropdown.Toggle>
                   <Dropdown.Menu className="DropDownResults">
                     <Dropdown.Item as='text'><div className="adult"> Adult</div>
